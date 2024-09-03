@@ -10,6 +10,8 @@ This documentation provides detailed guidelines and examples to assist you in in
 
 Refer to the specific sections for more in-depth instructions on managing your products, inventory, and orders efficiently.
 
+**Access the API documentation on SwaggerHub:** [https://app.swaggerhub.com/apis/peterviegas/APIIntegrationBrasplace/1.0.0](https://app.swaggerhub.com/apis/peterviegas/APIIntegrationBrasplace/1.0.0)
+
 ## 🌐 Environments
 
 - **Production Environment:** [https://integration.brasplace.com.br](https://integration.brasplace.com.br)
@@ -17,7 +19,6 @@ Refer to the specific sections for more in-depth instructions on managing your p
 
 ## 🔑 Authentication
 
-To use the services of this API, it is necessary to request a token and the `company_id` of the merchant. 
+To use the services of this API, it is necessary to request a token and the `company_id` of the merchant.
 
 To obtain this information, please contact us via email at [suporte@brasplace.com.br](mailto:suporte@brasplace.com.br), providing the merchant's CNPJ and indicating in the subject line that you wish to request access to the integration API.
-
