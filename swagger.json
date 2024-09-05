@@ -1,0 +1,1740 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/peterviegas/APIIntegrationBrasplace/1.0.0"
+  }, {
+    "description" : "Production",
+    "url" : "https://integration.brasplace.com.br"
+  }, {
+    "description" : "Testing",
+    "url" : "https://integrationhomol.brasplace.com.br"
+  } ],
+  "info" : {
+    "version" : "1.0.0",
+    "title" : "API Brasplace Integration",
+    "description" : "Welcome to Brasplace! This API describes how to perform basic integration for creating and updating products, stock, colors, and sizes, as well as how to execute some queries, such as order queries.\n\n**Comprehensive API Documentation**\n\nThis documentation provides detailed guidelines and examples to assist you in integrating with the Brasplace API.\nYou will find information on the various endpoints available, how to authenticate your requests, and best practices for handling errors and responses.\n\n*Refer to the specific sections for more in-depth instructions on managing your products, inventory, and orders efficiently.*\n\n** **\n\n**Environments**\n\nProduction Environment - https://integration.brasplace.com.br.\n\nTesting Environment - https://integrationhomol.brasplace.com.br.\n\n** **\n**Autentication**\n\nTo use the services of this API, it is necessary to request a token and the company_id of the merchant. To obtain this information, please contact us via email at suporte@brasplace.com.br, providing the merchant's CNPJ and indicating in the subject line that you wish to request access to the integration API.\n\n** **",
+    "termsOfService" : "http://brasplace.com/terms/",
+    "contact" : {
+      "name" : "API Support",
+      "email" : "support@brasplace.com.br"
+    },
+    "license" : {
+      "name" : "MIT",
+      "url" : "http://opensource.org/licenses/MIT"
+    },
+    "x-subtitle" : "Comprehensive API Documentation",
+    "x-description" : "This documentation provides detailed guidelines and examples to assist you in integrating with the Brasplace API. \nYou will find information on the various endpoints available, how to authenticate your requests, and best practices \nfor handling errors and responses. Be sure to refer to the specific sections for more in-depth instructions on \nmanaging your products, inventory, and orders efficiently.\n"
+  },
+  "paths" : {
+    "/v1/socks/company/{company_id}" : {
+      "get" : {
+        "tags" : [ "Stocks" ],
+        "description" : "Returns stocks within a specified period through pagination, using the provided parameters.\n\n**Example usage:**\n\n\n```bash curl --request GET \\\n\n--url \"https://integration.brasplace.com.br/v1/stocks/company/{company_id}?startDate=2020-07-07 21:00:00&endDate=2024-08-21 21:00:00&page=10&perpage=15\" \\\n\n--header \"Authorization:Bearer your_actual_token\" \\",
+        "operationId" : "ListStocks",
+        "parameters" : [ {
+          "name" : "company_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "startDate",
+          "required" : true,
+          "description" : "number of records to skip",
+          "schema" : {
+            "type" : "string",
+            "format" : "date"
+          }
+        }, {
+          "in" : "query",
+          "name" : "endDate",
+          "required" : true,
+          "description" : "number of records to skip",
+          "schema" : {
+            "type" : "string",
+            "format" : "date"
+          }
+        }, {
+          "in" : "query",
+          "name" : "page",
+          "description" : "number of records to skip",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "in" : "query",
+          "name" : "perpage 15",
+          "description" : "max number of records to return",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "in" : "header",
+          "name" : "Authorization",
+          "description" : "Bearer token for authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "response" : {
+                      "type" : "array",
+                      "items" : {
+                        "$ref" : "#/components/schemas/ResponseStock"
+                      }
+                    },
+                    "meta" : {
+                      "$ref" : "#/components/schemas/Meta"
+                    },
+                    "result" : {
+                      "$ref" : "#/components/schemas/Result"
+                    },
+                    "statusCode" : {
+                      "$ref" : "#/components/schemas/StatusCode"
+                    }
+                  }
+                },
+                "example" : {
+                  "response" : [ {
+                    "integrationId" : 57015,
+                    "productId" : 1118,
+                    "sku" : 5701501002,
+                    "colorId" : 263,
+                    "sizeId" : 3,
+                    "quantity" : 10,
+                    "unitType" : null,
+                    "updatedAt" : "2024-08-19 11:06:54"
+                  }, {
+                    "integrationId" : 57015,
+                    "productId" : 1118,
+                    "sku" : 5701501003,
+                    "colorId" : 263,
+                    "sizeId" : 4,
+                    "quantity" : 10,
+                    "unitType" : null,
+                    "updatedAt" : "2024-08-19 11:06:54"
+                  } ],
+                  "meta" : {
+                    "currentPage" : 10,
+                    "from" : 136,
+                    "path" : "http://integrationhomol.brasplace.com.br/v1/stocks/company/$2a$10$SjgC2qo7WJvxJ8Hofnnxj",
+                    "perPage" : 15,
+                    "to" : 150,
+                    "totalPages" : 17
+                  },
+                  "result" : {
+                    "success" : true,
+                    "message" : "Ok",
+                    "messages" : ""
+                  },
+                  "statusCode" : 200
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/socks/company/{company_id}/sock/{sock_id}" : {
+      "get" : {
+        "tags" : [ "Stocks" ],
+        "description" : "Returns the stock details using its ID.\n\n**Example usage:**\n\n```bash curl --request GET \\\n\n--url \"https://integration.brasplace.com.br/v1/stocks/company/{company_id}/sock/{sock_id}\" \\\n\n--header \"Authorization:Bearer your_actual_token\" \\",
+        "operationId" : "ListSocksId",
+        "parameters" : [ {
+          "name" : "company_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "sock_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 100
+          }
+        }, {
+          "in" : "header",
+          "name" : "Authorization",
+          "description" : "Bearer token for authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "response" : {
+                      "$ref" : "#/components/schemas/ResponseStock"
+                    },
+                    "result" : {
+                      "$ref" : "#/components/schemas/Result"
+                    },
+                    "statusCode" : {
+                      "$ref" : "#/components/schemas/StatusCode"
+                    }
+                  }
+                },
+                "example" : {
+                  "response" : {
+                    "integrationId" : 57006,
+                    "productId" : 1112,
+                    "sku" : 5700600403,
+                    "colorId" : 7,
+                    "sizeId" : 4,
+                    "quantity" : 5,
+                    "unitType" : null,
+                    "updatedAt" : "2024-08-18 19:27:37"
+                  },
+                  "result" : {
+                    "success" : true,
+                    "message" : "Ok",
+                    "messages" : ""
+                  },
+                  "statusCode" : 200
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/socks/company/{company_id} " : {
+      "patch" : {
+        "tags" : [ "Stocks" ],
+        "description" : "Receives a list of stocks and updates the database with the received quantities.\n\n**Example usage:**\n\n\n```bash curl --request Putch \\\n\n--url \"https://integration.brasplace.com.br/v1/socks/company/{company_id}\" \\\n\n--header \"Authorization:Bearer your_actual_token\" \\\n\n--header \"Content-Type:application/json\" \\\n\n--data '{ \"stocks\":[\n{ \"sku\":\"5700601002\", \"quantity\":10 },\n{ \"sku\":\"5700601003\", \"quantity\":20 },\n{ \"sku\":\"5701502601\", \"quantity\":15 },\n{ \"sku\":\"5701502702\", \"quantity\":5 },\n]}'",
+        "operationId" : "EditStocks",
+        "parameters" : [ {
+          "name" : "company_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "header",
+          "name" : "Authorization",
+          "description" : "Bearer token for authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "$ref" : "#/components/schemas/Result"
+                    },
+                    "statusCode" : {
+                      "$ref" : "#/components/schemas/StatusCode"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/company/{company_id}" : {
+      "get" : {
+        "tags" : [ "Products" ],
+        "description" : "Returns products within a specified period through pagination, using the provided parameters.\n\n**Example usage:**\n\n\n```bash curl --request GET \\\n\n--url \"https://integration.brasplace.com.br/v1/products/company/{company_id}?startDate=2020-07-07 21:00:00&endDate=2024-08-21 21:00:00&page=10&perpage=15\" \\\n\n--header \"Authorization:Bearer your_actual_token\" \\",
+        "operationId" : "ListProducts",
+        "parameters" : [ {
+          "name" : "company_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "startDate",
+          "required" : true,
+          "description" : "number of records to skip",
+          "schema" : {
+            "type" : "string",
+            "format" : "date"
+          }
+        }, {
+          "in" : "query",
+          "name" : "endDate",
+          "required" : true,
+          "description" : "number of records to skip",
+          "schema" : {
+            "type" : "string",
+            "format" : "date"
+          }
+        }, {
+          "in" : "query",
+          "name" : "page",
+          "description" : "number of records to skip",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "in" : "query",
+          "name" : "perpage 15",
+          "description" : "max number of records to return",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "in" : "header",
+          "name" : "Authorization",
+          "description" : "Bearer token for authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "response" : {
+                      "type" : "array",
+                      "items" : {
+                        "$ref" : "#/components/schemas/ResponseProduct"
+                      }
+                    },
+                    "meta" : {
+                      "$ref" : "#/components/schemas/Meta"
+                    },
+                    "result" : {
+                      "$ref" : "#/components/schemas/Result"
+                    },
+                    "statusCode" : {
+                      "$ref" : "#/components/schemas/StatusCode"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/company/{company_id}/product/{product_id}" : {
+      "get" : {
+        "tags" : [ "Products" ],
+        "description" : "Returns the product details using its ID.\n\n**Example usage:**\n\n```bash curl --request GET \\\n\n--url \"https://integration.brasplace.com.br/v1/products/company/{company_id}/product/{product_id}\" \\\n\n--header \"Authorization:Bearer your_actual_token\" \\",
+        "operationId" : "ListProductsById",
+        "parameters" : [ {
+          "name" : "company_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "product_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 100
+          }
+        }, {
+          "in" : "header",
+          "name" : "Authorization",
+          "description" : "Bearer token for authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "response" : {
+                      "$ref" : "#/components/schemas/ResponseProduct"
+                    },
+                    "result" : {
+                      "$ref" : "#/components/schemas/Result"
+                    },
+                    "statusCode" : {
+                      "$ref" : "#/components/schemas/StatusCode"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/company/{company_id} " : {
+      "put" : {
+        "tags" : [ "Products" ],
+        "description" : "Create and edit products - Prepared to accept a list or a single product. Used for both create and update operations.\n\n**Example usage:**\n\n\n```bash curl --request Putch \\\n\n--url \"https://integration.brasplace.com.br/v1/products/company/{company_id}\" \\\n\n--header \"Authorization:Bearer your_actual_token\" \\\n\n--header \"Content-Type:application/json\" \\\n\n--data '{\n\"products\":[\n{ \"active\":true,\n\"brand\":\"Other Girls\",\n\"categories\":[\n\"vestido\"\n], \"code\":\"57026\",\n\"composition\":\"Composição\",\n\"description\":\"Vestido .................\",\n\"height\":10,\n\"integration_id\":\"57026\",\n\"length\":30,\n\"name\":\"Vestido ....................\",\n\"price\":169,\n\"price_promotional\":0,\n\"promotion\":false,\n\"variations\":[\n{\n\"color\":\"Preto\",\n\"quantity\":0,\n\"size\":\"PP\",\n\"sku\":\"5702600200\",\n\"unit_type\":\"UN\"\n},\n{\n\"color\":\"Preto\",\n\"quantity\":0,\n\"size\":\"P\",\n\"sku\":\"5702600201\",\n\"unit_type\":\"UN\"\n},\n{ \"color\":\"Preto\",\n\"quantity\":0,\n\"size\":\"M\",\n\"sku\":\"5702600202\",\n\"unit_type\":\"UN\"\n},\n{\n\"color\":\"Off White\",\n\"quantity\":2,\n\"size\":\"PP\",\n\"sku\":\"5702600100\",\n\"unit_type\":\"UN\"\n},\n{\n\"color\":\"Off White\",\n\"quantity\":0,\n\"size\":\"P\",\n\"sku\":\"5702600101\",\n\"unit_type\":\"UN\"\n},\n{\n\"color\":\"Off White\",\n\"quantity\":0,\n\"size\":\"M\",\n\"sku\":\"5702600102\",\n\"unit_type\":\"UN\"\n},\n{\n\"color\":\"Terra\",\n\"quantity\":0,\n\"size\":\"PP\",\n\"sku\":\"5702601000\",\n\"unit_type\":\"UN\"\n},\n{\n\"color\":\"Terra\",\n\"quantity\":0,\n\"size\":\"P\",\n\"sku\":\"5702601001\",\n\"unit_type\":\"UN\"\n},\n{\n\"color\":\"Terra\",\n\"quantity\":0,\n\"size\":\"M\",\n\"sku\":\"5702601002\",\n\"unit_type\":\"UN\"\n},\n{\n\"color\":\"Nude\",\n\"quantity\":0,\n\"size\":\"PP\",\n\"sku\":\"5702601200\",\n\"unit_type\":\"UN\"\n},\n{\n\"color\":\"Nude\",\n\"quantity\":1,\n\"size\":\"P\",\n\"sku\":\"5702601201\",\n\"unit_type\":\"UN\"\n},\n{\n\"color\":\"Nude\",\n\"quantity\":0,\n\"size\":\"M\",\n\"sku\":\"5702601202\",\n\"unit_type\":\"UN\"\n},\n{\n\"color\":\"Azul Marinho\",\n\"quantity\":0,\n\"size\":\"PP\",\n\"sku\":\"5702602200\",\n\"unit_type\":\"UN\"\n},\n{\n\"color\":\"Azul Marinho\",\n\"quantity\":0,\n\"size\":\"P\",\n\"sku\":\"5702602201\",\n\"unit_type\":\"UN\"\n},\n{\n\"color\":\"Azul Marinho\",\n\"quantity\":0,\n\"size\":\"M\",\n\"sku\":\"5702602202\",\n\"unit_type\":\"UN\"\n},\n{\n\"color\":\"Pink\",\n\"quantity\":0,\n\"size\":\"PP\",\n\"sku\":\"5702600700\",\n\"unit_type\":\"UN\"\n},\n{\n\"color\":\"Pink\",\n\"quantity\":0,\n\"size\":\"P\",\n\"sku\":\"5702600701\",\n\"unit_type\":\"UN\"\n},\n{\n\"color\":\"Pink\",\n\"quantity\":0,\n\"size\":\"M\",\n\"sku\":\"5702600702\",\n\"unit_type\":\"UN\"\n}\n],\n\"weight\":300,\n\"width\":20\n}\n]\n}'",
+        "operationId" : "EditProduct",
+        "parameters" : [ {
+          "name" : "company_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "header",
+          "name" : "Authorization",
+          "description" : "Bearer token for authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "type" : "object",
+                      "properties" : {
+                        "success" : {
+                          "type" : "boolean"
+                        },
+                        "message" : {
+                          "type" : "string",
+                          "example" : "Ok"
+                        },
+                        "messages" : {
+                          "type" : "string",
+                          "example" : "",
+                          "nullable" : true
+                        }
+                      }
+                    },
+                    "statusCode" : {
+                      "type" : "integer",
+                      "example" : 200
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/company/{company_id}/product/{product_id}/images" : {
+      "post" : {
+        "tags" : [ "Images" ],
+        "description" : "Create and update images by associating the images with the product.\n\n**Example usage:**\n\n\n```bash curl --request Putch \\\n\n--url \"https://integration.brasplace.com.br/v1/products/company/{company_id}/product/{product_id}/images\" \\\n\n--header \"Authorization:Bearer your_actual_token\" \\\n\n--header \"Content-Type:application/json\" \\\n\n--data '{\"images\":[{\"order\":1,\"url\":\"https://xxxx/wwww/imagem-57049-pink-1.jpg\"},{\"order\":2,\"url\":\"https://https://xxxx/wwww/imagem-57049-pink-2.jpg\"}]}'",
+        "operationId" : "DeleteImageProduct",
+        "parameters" : [ {
+          "name" : "company_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "product_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 100
+          }
+        }, {
+          "in" : "header",
+          "name" : "Authorization",
+          "description" : "Bearer token for authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "type" : "object",
+                      "properties" : {
+                        "success" : {
+                          "type" : "boolean"
+                        },
+                        "message" : {
+                          "type" : "string",
+                          "example" : "Ok"
+                        },
+                        "messages" : {
+                          "type" : "string",
+                          "example" : "",
+                          "nullable" : true
+                        }
+                      }
+                    },
+                    "statusCode" : {
+                      "type" : "integer",
+                      "example" : 200
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/company/{company_id}/product/{product_id}/color/{color}/images" : {
+      "post" : {
+        "tags" : [ "Images" ],
+        "description" : "Create and update images by associating the images with the product.\n\n**Example usage:**\n\n\n```bash curl --request Putch \\\n\n--url \"https://integration.brasplace.com.br/v1/products/company/{company_id}/product/{product_id}/color/{color}/images\" \\\n\n--header \"Authorization:Bearer your_actual_token\" \\\n\n--header \"Content-Type:application/json\" \\\n\n--data '{\"images\":[{\"order\":1,\"url\":\"https://xxxx/wwww/imagem-57049-pink-1.jpg\"},{\"order\":2,\"url\":\"https://https://xxxx/wwww/imagem-57049-pink-2.jpg\"}]}'",
+        "operationId" : "CreateImageProduct",
+        "parameters" : [ {
+          "name" : "company_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "product_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 100
+          }
+        }, {
+          "name" : "color",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "header",
+          "name" : "Authorization",
+          "description" : "Bearer token for authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "type" : "object",
+                      "properties" : {
+                        "success" : {
+                          "type" : "boolean"
+                        },
+                        "message" : {
+                          "type" : "string",
+                          "example" : "Ok"
+                        },
+                        "messages" : {
+                          "type" : "string",
+                          "example" : "",
+                          "nullable" : true
+                        }
+                      }
+                    },
+                    "statusCode" : {
+                      "type" : "integer",
+                      "example" : 200
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/company/{company_id}/product/{product_id}image/{image_name}" : {
+      "delete" : {
+        "tags" : [ "Images" ],
+        "description" : "Delete the product imagem using its image name.\n\n**Example usage:**\n\n```bash curl --request GET \\\n\n--url \"https://integration.brasplace.com.br/v1/products/company/{company_id}/product/{product_id}image/{image_name}\" \\\n\n--header \"Authorization:Bearer your_actual_token\" \\",
+        "operationId" : "CreateImageProdutoCor",
+        "parameters" : [ {
+          "name" : "company_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "product_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 100
+          }
+        }, {
+          "name" : "image_name",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "header",
+          "name" : "Authorization",
+          "description" : "Bearer token for authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "$ref" : "#/components/schemas/Result"
+                    },
+                    "statusCode" : {
+                      "$ref" : "#/components/schemas/StatusCode"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/company/{company_id}/product/{product_id} " : {
+      "delete" : {
+        "tags" : [ "Images" ],
+        "description" : "Delete all images of a specific product.\n\n**Example usage:**\n\n```bash curl --request GET \\\n\n--url \"https://integration.brasplace.com.br/v1/products/company/{company_id}/product/{product_id}\" \\\n\n--header \"Authorization:Bearer your_actual_token\" \\",
+        "operationId" : "DeleteImagesProducts",
+        "parameters" : [ {
+          "name" : "company_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "product_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 100
+          }
+        }, {
+          "in" : "header",
+          "name" : "Authorization",
+          "description" : "Bearer token for authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "$ref" : "#/components/schemas/Result"
+                    },
+                    "statusCode" : {
+                      "$ref" : "#/components/schemas/StatusCode"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/company/{company_id}" : {
+      "get" : {
+        "tags" : [ "Orders" ],
+        "description" : "Returns orders within a specified period through pagination, using the provided parameters.\n\n**Example usage:**\n\n\n```bash curl --request GET \\\n\n--url \"https://integration.brasplace.com.br/v1/orders/company/{company_id}?startDate=2020-07-07 21:00:00&endDate=2024-08-21 21:00:00&page=10&perpage=15\" \\\n\n--header \"Authorization:Bearer your_actual_token\" \\",
+        "operationId" : "ListOrders",
+        "parameters" : [ {
+          "name" : "company_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "startDate",
+          "required" : true,
+          "description" : "number of records to skip",
+          "schema" : {
+            "type" : "string",
+            "format" : "date"
+          }
+        }, {
+          "in" : "query",
+          "name" : "endDate",
+          "required" : true,
+          "description" : "number of records to skip",
+          "schema" : {
+            "type" : "string",
+            "format" : "date"
+          }
+        }, {
+          "in" : "query",
+          "name" : "page",
+          "description" : "number of records to skip",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "in" : "query",
+          "name" : "perpage 15",
+          "description" : "max number of records to return",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "in" : "header",
+          "name" : "Authorization",
+          "description" : "Bearer token for authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "response" : {
+                      "type" : "array",
+                      "items" : {
+                        "$ref" : "#/components/schemas/ResponseOrder"
+                      }
+                    },
+                    "meta" : {
+                      "$ref" : "#/components/schemas/Meta"
+                    },
+                    "result" : {
+                      "$ref" : "#/components/schemas/Result"
+                    },
+                    "statusCode" : {
+                      "$ref" : "#/components/schemas/StatusCode"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/company/{company_id}/ordernumber/{product_id}" : {
+      "get" : {
+        "tags" : [ "Orders" ],
+        "description" : "Returns the order details using its ID.\n\n**Example usage:**\n\n```bash curl --request GET \\\n\n--url \"https://integration.brasplace.com.br/v1/orders/company/{company_id}/ordernumber/{product_id}\" \\\n\n--header \"Authorization:Bearer your_actual_token\" \\",
+        "operationId" : "ListOrderById",
+        "parameters" : [ {
+          "name" : "company_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "product_id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 100
+          }
+        }, {
+          "in" : "header",
+          "name" : "Authorization",
+          "description" : "Bearer token for authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "response" : {
+                      "$ref" : "#/components/schemas/ResponseOrderDetail"
+                    },
+                    "result" : {
+                      "$ref" : "#/components/schemas/Result"
+                    },
+                    "statusCode" : {
+                      "$ref" : "#/components/schemas/StatusCode"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "ResponseStock" : {
+        "type" : "object",
+        "properties" : {
+          "integrationId" : {
+            "type" : "string"
+          },
+          "productId" : {
+            "type" : "integer"
+          },
+          "sku" : {
+            "type" : "string"
+          },
+          "colorId" : {
+            "type" : "integer"
+          },
+          "sizeId" : {
+            "type" : "integer"
+          },
+          "quantity" : {
+            "type" : "integer"
+          },
+          "unitType" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "updatedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          }
+        }
+      },
+      "ResponseProduct" : {
+        "type" : "object",
+        "properties" : {
+          "active" : {
+            "type" : "boolean",
+            "description" : "Product activation status."
+          },
+          "brand" : {
+            "type" : "string",
+            "description" : "Product brand."
+          },
+          "categories" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "description" : "Categories to which the product belongs."
+          },
+          "code" : {
+            "type" : "string",
+            "description" : "Product code."
+          },
+          "composition" : {
+            "type" : "string",
+            "description" : "Product composition."
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "Detailed product description."
+          },
+          "height" : {
+            "type" : "number",
+            "format" : "float",
+            "description" : "Product height."
+          },
+          "integration_id" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Product integration ID."
+          },
+          "length" : {
+            "type" : "number",
+            "format" : "float",
+            "description" : "Product length."
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Product name."
+          },
+          "price" : {
+            "type" : "number",
+            "format" : "float",
+            "description" : "Product price."
+          },
+          "price_promotional" : {
+            "type" : "number",
+            "format" : "float",
+            "nullable" : true,
+            "description" : "Promotional price of the product."
+          },
+          "promotion" : {
+            "type" : "boolean",
+            "description" : "Indicates if the product is on promotion."
+          },
+          "variations" : {
+            "type" : "string",
+            "description" : "Product variations, if any."
+          },
+          "weight" : {
+            "type" : "number",
+            "format" : "float",
+            "description" : "Product weight."
+          },
+          "width" : {
+            "type" : "number",
+            "format" : "float",
+            "description" : "Product width."
+          }
+        }
+      },
+      "ResponseOrder" : {
+        "properties" : {
+          "order_number" : {
+            "type" : "string",
+            "description" : "Order number."
+          },
+          "created_at" : {
+            "type" : "string",
+            "description" : "Order creation date and time."
+          },
+          "updated_at" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Date of the last order update."
+          },
+          "send_at" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Order shipping date."
+          },
+          "cep" : {
+            "type" : "string",
+            "description" : "Postal code of the delivery address."
+          },
+          "street" : {
+            "type" : "string",
+            "description" : "Street of the delivery address."
+          },
+          "street_number" : {
+            "type" : "string",
+            "description" : "Street number of the delivery address."
+          },
+          "reference" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Reference point for delivery."
+          },
+          "complement" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Complement of the delivery address."
+          },
+          "neighborhood" : {
+            "type" : "string",
+            "description" : "Neighborhood of the delivery address."
+          },
+          "city" : {
+            "type" : "string",
+            "description" : "City of the delivery address."
+          },
+          "uf" : {
+            "type" : "string",
+            "description" : "State (UF) of the delivery address."
+          },
+          "country" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Country of the delivery address."
+          },
+          "freight_value" : {
+            "type" : "number",
+            "format" : "float",
+            "description" : "Freight cost."
+          },
+          "order_value" : {
+            "type" : "number",
+            "format" : "float",
+            "description" : "Total order value."
+          },
+          "bus_name" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Name of the transportation company."
+          },
+          "bus_prefix" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Bus prefix used for transportation."
+          },
+          "bus_plate" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Bus license plate used for transportation."
+          },
+          "bus_guide" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Bus guide used for transportation."
+          },
+          "company_transp" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Transportation company."
+          },
+          "phone_transp" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Phone number of the transportation company."
+          },
+          "pick_up_in_store" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Indicates if pickup will be done in-store."
+          },
+          "contact_seller" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Seller contact information."
+          },
+          "cpfCnpj" : {
+            "type" : "string",
+            "description" : "Customer CPF or CNPJ."
+          },
+          "email_customer" : {
+            "type" : "string",
+            "description" : "Customer email."
+          },
+          "customer_name" : {
+            "type" : "string",
+            "description" : "Customer name."
+          },
+          "sur_name_business_name" : {
+            "type" : "string",
+            "description" : "Customer's surname or business name."
+          },
+          "phone_customer" : {
+            "type" : "string",
+            "description" : "Customer phone number."
+          }
+        }
+      },
+      "ResponseOrderDetail" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Order number."
+          },
+          "company_id" : {
+            "type" : "string",
+            "description" : "Company ID."
+          },
+          "code" : {
+            "type" : "integer",
+            "description" : "Order code."
+          },
+          "integration_id" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Order integration ID."
+          },
+          "origin" : {
+            "type" : "string",
+            "description" : "Order origin."
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Current status of the order."
+          },
+          "created_at" : {
+            "type" : "string",
+            "description" : "Order creation date and time."
+          },
+          "updated_at" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Date of the last order update."
+          },
+          "observations" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Additional observations about the order."
+          },
+          "general_status" : {
+            "type" : "object",
+            "properties" : {
+              "received" : {
+                "type" : "boolean",
+                "description" : "Indicates whether the order has been received."
+              },
+              "released" : {
+                "type" : "boolean",
+                "description" : "Indicates whether the order has been released."
+              },
+              "separation" : {
+                "type" : "boolean",
+                "description" : "Indicates whether the order is being separated."
+              },
+              "separated" : {
+                "type" : "boolean",
+                "description" : "Indicates whether the order has been separated."
+              },
+              "canceled" : {
+                "type" : "boolean",
+                "description" : "Indicates whether the order has been canceled."
+              },
+              "paid" : {
+                "type" : "boolean",
+                "description" : "Indicates whether the order has been paid."
+              },
+              "sent" : {
+                "type" : "boolean",
+                "description" : "Indicates whether the order has been sent."
+              }
+            }
+          },
+          "customer" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "integer",
+                "description" : "Customer ID."
+              },
+              "integration_id" : {
+                "type" : "string",
+                "nullable" : true,
+                "description" : "Customer integration ID."
+              },
+              "name" : {
+                "type" : "string",
+                "description" : "Customer name."
+              },
+              "document" : {
+                "type" : "string",
+                "description" : "Customer document (CPF/CNPJ)."
+              },
+              "email" : {
+                "type" : "string",
+                "description" : "Customer email."
+              },
+              "phone" : {
+                "type" : "string",
+                "description" : "Customer phone."
+              }
+            }
+          },
+          "address" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string",
+                "nullable" : true,
+                "description" : "Address ID."
+              },
+              "cep" : {
+                "type" : "string",
+                "nullable" : true,
+                "description" : "ZIP code of the delivery address."
+              },
+              "street" : {
+                "type" : "string",
+                "nullable" : true,
+                "description" : "Street of the delivery address."
+              },
+              "number" : {
+                "type" : "string",
+                "nullable" : true,
+                "description" : "Number of the delivery address."
+              },
+              "complement" : {
+                "type" : "string",
+                "nullable" : true,
+                "description" : "Complement of the delivery address."
+              },
+              "neighborhood" : {
+                "type" : "string",
+                "nullable" : true,
+                "description" : "Neighborhood of the delivery address."
+              },
+              "reference" : {
+                "type" : "string",
+                "nullable" : true,
+                "description" : "Reference point of the delivery address."
+              },
+              "city" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "City ID."
+                  },
+                  "name" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "City name."
+                  },
+                  "state_id" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "State ID."
+                  }
+                }
+              },
+              "state" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "State ID."
+                  },
+                  "name" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "State name."
+                  },
+                  "initials" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "State initials."
+                  }
+                }
+              }
+            }
+          },
+          "products" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "id" : {
+                  "type" : "integer",
+                  "description" : "Product ID."
+                },
+                "integration_id" : {
+                  "type" : "string",
+                  "nullable" : true,
+                  "description" : "Product integration ID."
+                },
+                "code" : {
+                  "type" : "string",
+                  "description" : "Product code."
+                },
+                "name" : {
+                  "type" : "string",
+                  "description" : "Product name."
+                },
+                "image" : {
+                  "type" : "string",
+                  "description" : "URL of the product image."
+                },
+                "status" : {
+                  "type" : "string",
+                  "nullable" : true,
+                  "description" : "Product status."
+                },
+                "price" : {
+                  "type" : "number",
+                  "format" : "float",
+                  "description" : "Product price."
+                },
+                "price_promotional" : {
+                  "type" : "number",
+                  "format" : "float",
+                  "nullable" : true,
+                  "description" : "Promotional price of the product."
+                },
+                "promotion" : {
+                  "type" : "boolean",
+                  "description" : "Indicates whether the product is on promotion."
+                },
+                "weight" : {
+                  "type" : "number",
+                  "format" : "float",
+                  "description" : "Product weight."
+                },
+                "height" : {
+                  "type" : "number",
+                  "format" : "float",
+                  "description" : "Product height."
+                },
+                "width" : {
+                  "type" : "number",
+                  "format" : "float",
+                  "description" : "Product width."
+                },
+                "length" : {
+                  "type" : "number",
+                  "format" : "float",
+                  "description" : "Product length."
+                },
+                "stocks" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "id" : {
+                        "type" : "integer",
+                        "description" : "Stock ID."
+                      },
+                      "sku" : {
+                        "type" : "string",
+                        "description" : "Product SKU."
+                      },
+                      "requested" : {
+                        "type" : "integer",
+                        "description" : "Requested quantity."
+                      },
+                      "reserved" : {
+                        "type" : "integer",
+                        "description" : "Reserved quantity."
+                      },
+                      "colorId" : {
+                        "type" : "integer",
+                        "description" : "Color ID."
+                      },
+                      "color_name" : {
+                        "type" : "string",
+                        "description" : "Color name."
+                      },
+                      "color_code" : {
+                        "type" : "string",
+                        "description" : "Hexadecimal color code."
+                      },
+                      "size_id" : {
+                        "type" : "integer",
+                        "description" : "Size ID."
+                      },
+                      "size_name" : {
+                        "type" : "string",
+                        "description" : "Size name."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "freight" : {
+            "type" : "object",
+            "properties" : {
+              "name" : {
+                "type" : "string",
+                "nullable" : true,
+                "description" : "Freight name."
+              },
+              "value" : {
+                "type" : "number",
+                "nullable" : true,
+                "format" : "float",
+                "description" : "Freight value."
+              },
+              "estimate" : {
+                "type" : "string",
+                "nullable" : true,
+                "description" : "Estimated delivery time."
+              }
+            }
+          },
+          "seller" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "integer",
+                "description" : "Seller ID."
+              },
+              "integration_id" : {
+                "type" : "string",
+                "nullable" : true,
+                "description" : "Seller integration ID."
+              },
+              "name" : {
+                "type" : "string",
+                "description" : "Seller name."
+              },
+              "lastname" : {
+                "type" : "string",
+                "description" : "Seller last name."
+              },
+              "email" : {
+                "type" : "string",
+                "description" : "Seller email."
+              },
+              "phone" : {
+                "type" : "string",
+                "description" : "Seller phone."
+              }
+            }
+          },
+          "payment" : {
+            "type" : "object",
+            "properties" : {
+              "method" : {
+                "type" : "string",
+                "description" : "Payment method."
+              },
+              "type" : {
+                "type" : "string",
+                "nullable" : true,
+                "description" : "Payment type."
+              },
+              "is_paid" : {
+                "type" : "boolean",
+                "description" : "Indicates whether the payment has been made."
+              },
+              "paid_at" : {
+                "type" : "string",
+                "nullable" : true,
+                "description" : "Payment date."
+              },
+              "analysis_status" : {
+                "type" : "string",
+                "nullable" : true,
+                "description" : "Payment analysis status."
+              },
+              "transaction" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "Transaction ID."
+                  },
+                  "provider" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "Transaction provider."
+                  },
+                  "number" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "Transaction number."
+                  },
+                  "nsu" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "Transaction NSU."
+                  },
+                  "installments" : {
+                    "type" : "integer",
+                    "nullable" : true,
+                    "description" : "Number of installments."
+                  },
+                  "value" : {
+                    "type" : "number",
+                    "nullable" : true,
+                    "format" : "float",
+                    "description" : "Transaction value."
+                  },
+                  "taxes" : {
+                    "type" : "number",
+                    "nullable" : true,
+                    "format" : "float",
+                    "description" : "Transaction taxes."
+                  },
+                  "net_value" : {
+                    "type" : "number",
+                    "nullable" : true,
+                    "format" : "float",
+                    "description" : "Net value of the transaction."
+                  },
+                  "discount" : {
+                    "type" : "number",
+                    "nullable" : true,
+                    "format" : "float",
+                    "description" : "Discount applied to the transaction."
+                  }
+                }
+              },
+              "card" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "Card ID."
+                  },
+                  "number" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "Card number."
+                  },
+                  "brand" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "Card brand."
+                  }
+                }
+              },
+              "address" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "Billing address ID."
+                  },
+                  "cep" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "Billing address ZIP code."
+                  },
+                  "street" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "Billing address street."
+                  },
+                  "number" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "Billing address number."
+                  },
+                  "complement" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "Billing address complement."
+                  },
+                  "neighborhood" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "Billing address neighborhood."
+                  },
+                  "reference" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "Billing address reference point."
+                  },
+                  "city" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "Billing address city."
+                  },
+                  "state" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "Billing address state."
+                  }
+                }
+              }
+            }
+          },
+          "summary" : {
+            "type" : "object",
+            "properties" : {
+              "requested" : {
+                "type" : "object",
+                "properties" : {
+                  "parts" : {
+                    "type" : "integer",
+                    "description" : "Total quantity of requested items."
+                  },
+                  "value" : {
+                    "type" : "number",
+                    "format" : "float",
+                    "description" : "Total value of requested items."
+                  }
+                }
+              },
+              "reserved" : {
+                "type" : "object",
+                "properties" : {
+                  "parts" : {
+                    "type" : "integer",
+                    "description" : "Total quantity of reserved items."
+                  },
+                  "value" : {
+                    "type" : "number",
+                    "format" : "float",
+                    "description" : "Total value of reserved items."
+                  },
+                  "rate" : {
+                    "type" : "number",
+                    "format" : "float",
+                    "description" : "Reservation rate."
+                  }
+                }
+              },
+              "coupon" : {
+                "type" : "object",
+                "properties" : {
+                  "code" : {
+                    "type" : "string",
+                    "nullable" : true,
+                    "description" : "Discount coupon code."
+                  },
+                  "amount" : {
+                    "type" : "number",
+                    "format" : "float",
+                    "description" : "Value of the discount applied."
+                  },
+                  "discount" : {
+                    "type" : "number",
+                    "format" : "float",
+                    "description" : "Percentage of discount applied."
+                  }
+                }
+              },
+              "additional_values" : {
+                "type" : "string",
+                "nullable" : true,
+                "description" : "Additional values applied to the order."
+              },
+              "discount" : {
+                "type" : "number",
+                "format" : "float",
+                "description" : "Discount applied to the order."
+              },
+              "totalValue" : {
+                "type" : "number",
+                "format" : "float",
+                "description" : "Total value of the order."
+              }
+            }
+          }
+        }
+      },
+      "Meta" : {
+        "type" : "object",
+        "properties" : {
+          "currentPage" : {
+            "type" : "integer",
+            "description" : "Current page number."
+          },
+          "from" : {
+            "type" : "integer",
+            "description" : "Number of the first item on the page."
+          },
+          "path" : {
+            "type" : "string",
+            "description" : "Path of the request URL."
+          },
+          "perPage" : {
+            "type" : "integer",
+            "description" : "Number of items per page."
+          },
+          "to" : {
+            "type" : "integer",
+            "description" : "Number of the last item on the page."
+          },
+          "totalPages" : {
+            "type" : "integer",
+            "description" : "Total number of pages."
+          }
+        }
+      },
+      "Result" : {
+        "type" : "object",
+        "properties" : {
+          "success" : {
+            "type" : "boolean",
+            "description" : "Indicates whether the request was successful."
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Status message."
+          },
+          "messages" : {
+            "type" : "string",
+            "nullable" : true,
+            "description" : "Additional messages, if any."
+          }
+        }
+      },
+      "StatusCode" : {
+        "type" : "integer",
+        "description" : "HTTP status code of the response."
+      }
+    }
+  }
+}
