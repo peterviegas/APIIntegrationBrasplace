@@ -1,24 +1,41 @@
 # API Brasplace Integration - v1.0.0
 
-**OAS 3.0**
+## **OAS 3.0**
 
-Welcome to Brasplace! This API describes how to perform basic integration for creating and updating products, stock, colors, and sizes, as well as how to execute some queries, such as order queries.
+Welcome to Brasplace! This API provides integration for creating and updating products, managing stock, colors, and sizes, and executing order queries.
 
-## 📄 Comprehensive API Documentation
+---
 
-This documentation provides detailed guidelines and examples to assist you in integrating with the Brasplace API. You will find information on the various endpoints available, how to authenticate your requests, and best practices for handling errors and responses.
+## 📄 **Comprehensive API Documentation**
 
-Refer to the specific sections for more in-depth instructions on managing your products, inventory, and orders efficiently.
+This documentation offers detailed guidelines to help you integrate with the Brasplace API. It includes information on available endpoints, authentication methods, and best practices for handling responses and errors.
 
-**Access the API documentation on SwaggerHub:** [https://app.swaggerhub.com/apis/peterviegas/APIIntegrationBrasplace/1.0.0](https://app.swaggerhub.com/apis/peterviegas/APIIntegrationBrasplace/1.0.0)
+Refer to specific sections for comprehensive instructions on managing products, inventory, and orders efficiently.
 
-## 🌐 Environments
+> **API Documentation on SwaggerHub:**  
+> [https://app.swaggerhub.com/apis/peterviegas/APIIntegrationBrasplace/1.0.0](https://app.swaggerhub.com/apis/peterviegas/APIIntegrationBrasplace/1.0.0)
 
-- **Production Environment:** [https://integration.brasplace.com.br](https://integration.brasplace.com.br)
-- **Testing Environment:** [https://integrationhomol.brasplace.com.br](https://integrationhomol.brasplace.com.br)
+---
 
-## 🔑 Authentication
+## 🌐 **Environments**
 
-To use the services of this API, it is necessary to request a token and the `company_id` of the merchant.
+- **Production Environment:**  
+  [https://integration.brasplace.com.br](https://integration.brasplace.com.br)
+- **Testing Environment:**  
+  [https://integrationhomol.brasplace.com.br](https://integrationhomol.brasplace.com.br)
 
-To obtain this information, please contact us via email at [suporte@brasplace.com.br](mailto:suporte@brasplace.com.br), providing the merchant's CNPJ and indicating in the subject line that you wish to request access to the integration API.
+---
+
+## 🔑 **Authentication**
+
+To access this API, you'll need to request a token and `company_id` from Brasplace.
+
+> **Contact:**  
+> Email: [suporte@brasplace.com.br](mailto:suporte@brasplace.com.br)  
+> Provide your merchant's CNPJ in the subject when requesting API access.
+
+---
+
+Stay updated with these resources for seamless integration, and don't hesitate to reach out for support!
+
+
