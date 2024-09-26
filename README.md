@@ -1,12 +1,12 @@
-# API Brasplace Integration - v1.0.0
+## API Brasplace Integration - v1.0.0
 
-## **OAS 3.0**
+### **OAS 3.0**
 
 Welcome to Brasplace! This API provides integration for creating and updating products, managing stock, colors, and sizes, and executing order queries.
 
 ---
 
-## 📄 **Comprehensive API Documentation**
+### 📄 **Comprehensive API Documentation**
 
 This documentation offers detailed guidelines to help you integrate with the Brasplace API. It includes information on available endpoints, authentication methods, and best practices for handling responses and errors.
 
@@ -17,7 +17,7 @@ Refer to specific sections for comprehensive instructions on managing products, 
 
 ---
 
-## 🌐 **Environments**
+### 🌐 **Environments**
 
 - **Production Environment:**  
   [https://integration.brasplace.com.br](https://integration.brasplace.com.br)
@@ -26,7 +26,7 @@ Refer to specific sections for comprehensive instructions on managing products, 
 
 ---
 
-## 🔑 **Authentication**
+### 🔑 **Authentication**
 
 To access this API, you'll need to request a token and `company_id` from Brasplace.
 
